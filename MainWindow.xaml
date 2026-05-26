@@ -1,0 +1,177 @@
+﻿<Window x:Class="TemplateMatching.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Template Matching"
+        Height="550" Width="1000"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="32"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Bar -->
+        <Border Grid.Row="0" Background="#F0F0F0" BorderBrush="#CCCCCC" BorderThickness="0,0,0,1" Padding="20,0">
+            <Grid Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="1" Text="Template Matching · Select master image and run" 
+                           FontSize="11" Foreground="#666666" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,8,0">
+                    <Button x:Name="BtnOpenFile" Margin="0,0,8,0" Padding="10,5" Background="#E0E0E0" BorderBrush="#ADADAD" BorderThickness="1" 
+                            Click="BtnOpenFile_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📂 Open Scene" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="BtnRun" IsEnabled="False" Padding="10,5" Background="#0078D4" Foreground="White" BorderThickness="0"
+                            Click="BtnRun_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="▶ Run" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Content -->
+        <Grid Grid.Row="1" Margin="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="260"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left: Parameters + Master Image -->
+            <Border Grid.Column="0" Background="White" BorderBrush="#DDD" BorderThickness="1" CornerRadius="6" Margin="0,0,10,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="12">
+
+                        <TextBlock Text="Settings" FontWeight="Bold" FontSize="16" Margin="0,0,0,12"/>
+
+                        <!-- Max Matches -->
+                        <TextBlock Text="Max Matches" FontSize="11" Foreground="#666" Margin="0,0,0,4"/>
+                        <TextBox x:Name="TbMaxMatches" Text="10" Height="28" Margin="0,0,0,14" Padding="6" BorderBrush="#CCC" BorderThickness="1"/>
+
+                        <!-- Pyramid Levels -->
+                        <TextBlock Text="Pyramid Levels" FontSize="11" Foreground="#666" Margin="0,0,0,4"/>
+                        <TextBox x:Name="TbPyramidLevels" Text="3" Height="28" Margin="0,0,0,14" Padding="6" BorderBrush="#CCC" BorderThickness="1"/>
+
+                        <!-- Min Score -->
+                        <TextBlock Text="Min Score" FontSize="11" Foreground="#666" Margin="0,0,0,4"/>
+                        <TextBox x:Name="TbMinScore" Text="0.80" Height="28" Margin="0,0,0,14" Padding="6" BorderBrush="#CCC" BorderThickness="1"/>
+
+                        <!-- NMS Overlap -->
+                        <TextBlock Text="NMS Overlap" FontSize="11" Foreground="#666" Margin="0,0,0,4"/>
+                        <TextBox x:Name="TbNMSOverlap" Text="0.30" Height="28" Margin="0,0,0,14" Padding="6" BorderBrush="#CCC" BorderThickness="1"/>
+
+                        <Separator Margin="0,0,0,14" Background="#CCC"/>
+
+                        <!-- Angle Range -->
+                        <TextBlock Text="Angle Range" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                        <Grid Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="12"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="From" FontSize="10" Foreground="#666"/>
+                                <TextBox x:Name="TbAngleFrom" Text="0" Height="28" Margin="0,4,0,0" Padding="6" BorderBrush="#CCC" BorderThickness="1"/>
+                            </StackPanel>
+                            <TextBlock Grid.Column="1" Text="—" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#666"/>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="To" FontSize="10" Foreground="#666"/>
+                                <TextBox x:Name="TbAngleTo" Text="0" Height="28" Margin="0,4,0,0" Padding="6" BorderBrush="#CCC" BorderThickness="1"/>
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock Text="degrees (0° = no rotation)" FontSize="10" Foreground="#666" Margin="0,0,0,14"/>
+
+                        <!-- Angle Step -->
+                        <TextBlock Text="Angle Step" FontSize="11" Foreground="#666" Margin="0,0,0,4"/>
+                        <TextBox x:Name="TbAngleStep" Text="5.0" Height="28" Margin="0,0,0,14" Padding="6" BorderBrush="#CCC" BorderThickness="1"/>
+
+                        <Separator Margin="0,0,0,14" Background="#CCC"/>
+
+                        <!-- Master Template Load -->
+                        <TextBlock Text="Master Template" FontWeight="Bold" FontSize="16" Margin="0,0,0,8"/>
+                        <Button x:Name="BtnLoadMaster" Content="📁 Load Master Image" Padding="10,5" Background="#E0E0E0" BorderBrush="#ADADAD" BorderThickness="1"
+                                Click="BtnLoadMaster_Click" Margin="0,0,0,8"/>
+                        <Border BorderBrush="#CCC" BorderThickness="1" Background="#F5F5F5" Height="100" CornerRadius="4">
+                            <Image x:Name="MasterPreview" Stretch="Uniform" Margin="4"/>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- Center: Image Display -->
+            <Border Grid.Column="1" Background="#2D2D2D" CornerRadius="6" Margin="0,0,10,0" ClipToBounds="True">
+                <Image x:Name="MainImage" Stretch="Uniform" />
+            </Border>
+
+            <!-- Right: Results -->
+            <Border Grid.Column="2" Background="White" BorderBrush="#DDD" BorderThickness="1" CornerRadius="6">
+                <StackPanel Margin="12">
+                    <TextBlock Text="Results" FontWeight="Bold" FontSize="16" Margin="0,0,0,12"/>
+
+                    <!-- Status badge -->
+                    <Border Background="#F5F5F5" BorderBrush="#DDD" BorderThickness="1" CornerRadius="6" Padding="10,7" Margin="0,0,0,14">
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse x:Name="StatusDot" Width="8" Height="8" Fill="#999" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="TbStatus" Text="  Waiting for input" FontSize="12" Foreground="#666" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Best Match metrics -->
+                    <TextBlock Text="Best Object" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                    <Border Background="#FAFAFA" BorderBrush="#DDD" BorderThickness="1" CornerRadius="6" Padding="12,10" Margin="0,0,0,12">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="28"/>
+                                <RowDefinition Height="28"/>
+                                <RowDefinition Height="28"/>
+                                <RowDefinition Height="28"/>
+                                <RowDefinition Height="28"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Point" FontSize="11" Foreground="#666" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="TbPoint" Text="—" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Angle" FontSize="11" Foreground="#666" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" x:Name="TbAngle" Text="—" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Area" FontSize="11" Foreground="#666" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" x:Name="TbArea" Text="—" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Score" FontSize="11" Foreground="#666" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" x:Name="TbScore" Text="—" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Elapsed" FontSize="11" Foreground="#666" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" x:Name="TbElapsed" Text="—" FontWeight="SemiBold" FontSize="12"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- Log -->
+                    <TextBlock Text="Log" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                    <Border Background="#F7F7F7" BorderBrush="#DDD" BorderThickness="1" CornerRadius="6" Padding="8">
+                        <ScrollViewer x:Name="LogScroll" Height="140" VerticalScrollBarVisibility="Auto">
+                            <TextBlock x:Name="TbLog" FontFamily="Consolas" FontSize="10.5" Foreground="#636363" TextWrapping="Wrap"
+                                       Text="> System ready&#x0a;> Awaiting scene and master image…"/>
+                        </ScrollViewer>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="2" Background="#F0F0F0" BorderBrush="#CCCCCC" BorderThickness="0,1,0,0" Padding="16,0">
+            <Grid>
+                <TextBlock x:Name="TbStatusBar" Text="Ready" FontSize="11" Foreground="#666" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,77 @@
+﻿# Build output
+/bin/
+/obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache files
+.vs/
+*.dtbcache.v2
+*.cache
+*.tmp
+*.tmp.*
+*.temp
+*.temp.*
+
+# Backup & swap files
+*~
+*.bak
+*.swp
+
+# Logs & diagnostics
+*.log
+*.etl
+
+# Package Manager / NuGet
+/packages/
+*.nupkg
+*.snupkg
+NuGet.config
+packages.config
+project.lock.json
+project.assets.json
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Publish output
+/publish/
+*.pubxml.user
+*.pubxml
+*.psess
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# Python (if any)
+__pycache__/
+*.py[cod]
+
+# OpenCV runtime (optional, but can be large)
+OpenCvSharpExtern.dll
+
+# Compiled assemblies
+*.dll
+*.exe
+*.so
+*.dylib
+
+# Windows Imaging Component cache
+*.wdp
+*.wbmp
+
+# Screenshots or test images (tuỳ chọn, nếu muốn giữ ảnh mẫu thì xóa dòng dưới)
+# Image/*
+# Result/*
+
+# Ignore specific user config
+*.csproj.user
+*.csproj.dotsettings
