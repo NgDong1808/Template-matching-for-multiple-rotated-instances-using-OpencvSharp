@@ -48,24 +48,6 @@ dotnet restore
 dotnet build
 dotnet run
 
----
-
-## 📁 Project Structure
-
-TemplateMatching/
-├── bin/                    # Compiled binaries
-├── Image/                  # Sample input images (scene + master template)
-├── obj/                    # Intermediate build objects
-├── Result/                 # Output screenshots and test results
-├── App.xaml                # Application resources
-├── App.xaml.cs             # App startup logic
-├── AssemblyInfo.cs         # Assembly metadata
-├── MainWindow.xaml         # WPF UI Layout and styling
-├── MainWindow.xaml.cs      # Core matching algorithm (Pyramid, Rotation, NMS)
-├── TemplateMatching.csproj # Project configuration file
-└── README.md               # Project documentation
-
----
 
 ## 🎮 Usage
 
