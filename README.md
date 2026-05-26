@@ -2,7 +2,7 @@
 
 A WPF application that detects **multiple rotated instances** of a template image inside a larger scene using **OpenCvSharp** (C# bindings for OpenCV). Implements coarse‑to‑fine pyramid search, rotated template generation, and Non‑Maximum Suppression for robust multi‑object detection.
 
-![Demo Result](Result/demo_result.png)
+![Demo Result](Result/TestResult.png)
 
 ## 🧠 Core Strategy for Multi‑Object & Rotated Object Detection
 
@@ -32,13 +32,6 @@ After fine matching, many overlapping bounding boxes may appear around the same 
 ### 5. Drawing Rotated Boxes
 Instead of axis‑aligned rectangles, each detection is rendered as a **rotated bounding box** (via `RotatedRect`) with a small crosshair at its center – giving a clear visual feedback of the object’s orientation.
 
-## 🖼️ Example Result
-
-*Below: detection of multiple rotated capacitors on a tray. The master was a single straight capacitor. Green boxes show all matches with their correct angles.*
-
-![Detection example](Result/demo_result.png)
-
-> The `Result` folder contains sample output images.
 
 ## 🚀 Getting Started
 
@@ -80,7 +73,7 @@ Build & Run:
 	├── 📁 bin/                 # Compiled binaries
 	├── 📁 Image/               # Sample input images (scene + master)
 	├── 📁 obj/                 # Intermediate objects
-	├── 📁 Result/              # Output screenshots (e.g., demo_result.png)
+	├── 📁 Result/              # Output screenshots (e.g., TestResult.png)
 	├── 📄 App.xaml             # Application resources
 	├── 📄 App.xaml.cs          # App startup logic
 	├── 📄 AssemblyInfo.cs      # Assembly metadata
