@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TemplateMatching")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3d2173735437077375fa138f2e1ef7ea57ad54b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("TemplateMatching")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TemplateMatching")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

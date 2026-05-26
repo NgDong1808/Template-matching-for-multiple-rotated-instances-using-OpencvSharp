@@ -28,3 +28,4 @@ C:\C#\TemplateMatching\TemplateMatching\obj\Debug\net8.0-windows\refint\Template
 C:\C#\TemplateMatching\TemplateMatching\obj\Debug\net8.0-windows\TemplateMatching.pdb
 C:\C#\TemplateMatching\TemplateMatching\obj\Debug\net8.0-windows\TemplateMatching.genruntimeconfig.cache
 C:\C#\TemplateMatching\TemplateMatching\obj\Debug\net8.0-windows\ref\TemplateMatching.dll
+C:\C#\TemplateMatching\TemplateMatching\obj\Debug\net8.0-windows\TemplateMatching.sourcelink.json
